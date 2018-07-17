@@ -3,6 +3,7 @@ const webpack = require('webpack');
 
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const SRC_DIR = path.resolve(__dirname, 'src');
 const DEST_DIR = path.resolve(__dirname, 'dist');
@@ -25,18 +26,23 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.ts$/,
-                exclude: /node_modules/,
-                enforce: 'pre',
-                use: [
-                    {
-                        loader: 'tslint-loader',
-                        options: {
-                            emitErrors: true
-                        }
-                    }
-                ],
+              test: /\.vue$/,
+              loader: 'vue-loader'
             },
+
+            // {
+            //     test: /\.ts$/,
+            //     exclude: /node_modules/,
+            //     enforce: 'pre',
+            //     use: [
+            //         {
+            //             loader: 'tslint-loader',
+            //             options: {
+            //                 emitErrors: true
+            //             }
+            //         }
+            //     ],
+            // },
             {
                 test: /\.ts$/,
                 exclude: /node_modules/,
@@ -45,7 +51,10 @@ module.exports = {
                         loader: 'babel-loader'
                     },
                     {
-                        loader: 'ts-loader'
+                        loader: 'ts-loader',
+                        options: {
+                          appendTsSuffixTo: [/\.vue$/],
+                        }
                     }
                 ],
             },
@@ -74,6 +83,7 @@ module.exports = {
         new CopyWebpackPlugin([
             { from: 'examples', to: 'examples' }
         ]),
+        new VueLoaderPlugin()
     ],
 
     devtool: 'cheap-module-source-map',
