@@ -1,5 +1,4 @@
 import "../scss/blog-style.scss";
-import {mountComponents} from "./lib/mount-components";
-import {ShareButtons} from "./components/share-buttons/share-buttons";
+import {mountShareButtons} from "./lib/mount-share-buttons";
 
-mountComponents(".share-buttons", ShareButtons);
+mountShareButtons();

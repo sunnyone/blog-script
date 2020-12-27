@@ -1,5 +1,10 @@
 import React from "react";
 
-export const ShareButtons: React.FC = () =>
-    <div>Share Buttons</div>;
+interface ShareButtonsProps {
+    title: string;
+    url: string;
+}
+
+export const ShareButtons: React.FC<ShareButtonsProps> = ({title, url}) =>
+    <div>Share Buttons: {url},{title}</div>;
 
