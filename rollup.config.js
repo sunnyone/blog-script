@@ -6,6 +6,7 @@ import {terser} from "rollup-plugin-terser";
 import externals from "rollup-plugin-node-externals";
 import copy from "rollup-plugin-copy";
 import replace from "@rollup/plugin-replace";
+import {sizeSnapshot} from "rollup-plugin-size-snapshot";
 
 export default {
     input: "src/ts/blog-script.ts",
@@ -29,6 +30,9 @@ export default {
 
         ts(),
         postCss(),
+
+        sizeSnapshot(),
+
         terser()
     ]
 };
