@@ -1,9 +1,5 @@
 import "../scss/blog-style.scss";
+import {mountComponents} from "./lib/mount-components";
+import {ShareButtons} from "./components/share-buttons/share-buttons";
 
-function mountComponent(component: any, element: HTMLElement, props = {}) {
-    // TODO:
-}
-
-// mountComponent(Sample, document.getElementById("sample")!);
-
-console.log("Hello, World");
+mountComponents(".share-buttons", ShareButtons);
